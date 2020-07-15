@@ -1,4 +1,4 @@
-# projectname
+# Timo's Newsroom
 
 ## Project setup
 

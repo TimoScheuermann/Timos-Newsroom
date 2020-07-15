@@ -5,7 +5,7 @@ module.exports = {
       // eslint-disable-next-line @typescript-eslint/camelcase
       start_url: '.',
     },
-    name: 'projectname',
+    name: "Timo's Newsroom",
     themeColor: '#000',
     msTileColor: '#ffffff',
     appleMobileWebAppCapable: 'yes',
