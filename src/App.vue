@@ -1,5 +1,6 @@
 <template>
   <div class="timos-newsroom">
+    <tc-header title="Timo's Newsroom" />
     <router-view />
   </div>
 </template>
@@ -26,10 +27,12 @@ body {
   color: $color;
   margin: 0;
 }
+
 [content] {
-  padding: 20px 5vw calc(20px + env(safe-area-inset-bottom));
+  padding: calc(50px + 5vw + env(safe-area-inset-top)) 5vw
+    calc(5vw + env(safe-area-inset-bottom));
   @media #{$isMobile} {
-    padding-bottom: calc(70px + env(safe-area-inset-bottom));
+    padding-bottom: calc(50px + 5vw + env(safe-area-inset-bottom));
   }
 }
 </style>

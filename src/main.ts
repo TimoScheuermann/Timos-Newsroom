@@ -15,7 +15,7 @@ for (const component in TCComponents) {
 }
 
 router.beforeEach((to: Route, from: Route, next: Function) => {
-  const title = getTitle(to);
+  const title = getTitle();
   document.title = title;
 
   const gt = document.querySelector('meta[name="title"]');
@@ -33,5 +33,5 @@ router.beforeEach((to: Route, from: Route, next: Function) => {
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  render: h => h(App)
 }).$mount('#app');
