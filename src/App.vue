@@ -29,10 +29,7 @@ body {
 }
 
 [content] {
-  padding: calc(50px + 5vw + env(safe-area-inset-top)) 5vw
+  padding: calc(50px + env(safe-area-inset-top)) 5vw
     calc(5vw + env(safe-area-inset-bottom));
-  @media #{$isMobile} {
-    padding-bottom: calc(50px + 5vw + env(safe-area-inset-bottom));
-  }
 }
 </style>

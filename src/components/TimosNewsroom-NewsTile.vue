@@ -1,5 +1,9 @@
 <template>
-  <div class="timos-newsroom--news-tile" :class="{ latest: latest }">
+  <div
+    v-if="news"
+    class="timos-newsroom--news-tile"
+    :class="{ latest: latest }"
+  >
     <div class="thumbnail">
       <tc-image :src="news.thumbnail" />
       <!-- <img :src="news.thumbnail" alt="" /> -->
@@ -10,7 +14,9 @@
       <div class="description">{{ news.description }}</div>
       <div class="grower"></div>
       <div class="footer">
-        <div class="date">{{ formatDate(news.date) }}</div>
+        <tc-tooltip :tooltip="new Date(news.date).toLocaleString()">
+          <div class="date">{{ formatDate(news.date) }}</div>
+        </tc-tooltip>
 
         <tc-link v-if="news.project" :href="getProjectURL(news.project)">
           {{ news.project }}
@@ -30,7 +36,7 @@ export default class TimosNewsroomNewsTile extends Vue {
   @Prop() news!: News;
   @Prop({ default: false }) latest!: boolean;
 
-  public formatDate(date: Date): string {
+  public formatDate(date: number): string {
     return formatDate(date);
   }
 
@@ -44,14 +50,17 @@ export default class TimosNewsroomNewsTile extends Vue {
 .timos-newsroom--news-tile {
   background: $paragraph;
   border-radius: $border-radius;
-  overflow: hidden;
+  // overflow: hidden;
   max-width: 90vw;
   display: grid;
   box-shadow: $shadow;
   &.latest {
-    grid-template-columns: 1fr 1fr;
-    .thumbnail img {
-      height: 350px;
+    @media #{$isDesktop} {
+      grid-template-columns: 1fr 1fr;
+      .thumbnail img {
+        height: 350px;
+        margin-bottom: -4px;
+      }
     }
   }
   .thumbnail {
@@ -60,6 +69,7 @@ export default class TimosNewsroomNewsTile extends Vue {
       height: 300px;
       max-width: 100%;
       object-fit: cover;
+      border-radius: $border-radius;
     }
   }
   .informations {

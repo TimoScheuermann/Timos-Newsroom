@@ -3,8 +3,8 @@ export interface News {
   description: string;
   thumbnail: string;
   type: NewsType;
-  project?: Project;
-  date: Date;
+  project: Project;
+  date: number;
 }
 
 export type NewsType = 'update' | 'change' | 'feature';
