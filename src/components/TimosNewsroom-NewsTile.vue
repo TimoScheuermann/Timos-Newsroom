@@ -3,8 +3,9 @@
     v-if="news"
     class="timos-newsroom--news-tile"
     :class="{ latest: latest }"
+    :style="{ animationDelay: index / 500 + 's' }"
   >
-    <div class="thumbnail">
+    <div class="thumbnail" :class="{ hasBackground: hasBackground }">
       <tc-image :src="news.thumbnail" />
       <!-- <img :src="news.thumbnail" alt="" /> -->
     </div>
@@ -35,6 +36,14 @@ import { formatDate } from '@/utils/functions';
 export default class TimosNewsroomNewsTile extends Vue {
   @Prop() news!: News;
   @Prop({ default: false }) latest!: boolean;
+  @Prop() index!: number;
+
+  get hasBackground(): boolean {
+    return (
+      this.news.description.startsWith('This updated brings ') ||
+      this.news.description.endsWith('speed up your development workflow.')
+    );
+  }
 
   public formatDate(date: number): string {
     return formatDate(date);
@@ -47,10 +56,21 @@ export default class TimosNewsroomNewsTile extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .timos-newsroom--news-tile {
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   background: $paragraph;
   border-radius: $border-radius;
-  // overflow: hidden;
+  z-index: 1;
   max-width: 90vw;
   display: grid;
   box-shadow: $shadow;
@@ -64,12 +84,22 @@ export default class TimosNewsroomNewsTile extends Vue {
     }
   }
   .thumbnail {
+    margin: 20px {
+      bottom: 0;
+    }
+
     img {
       width: 100%;
-      height: 300px;
+      max-height: 300px;
       max-width: 100%;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: $border-radius;
+    }
+    &.hasBackground {
+      margin: 0;
+      img {
+        object-fit: cover;
+      }
     }
   }
   .informations {
@@ -87,7 +117,7 @@ export default class TimosNewsroomNewsTile extends Vue {
       &.update {
         color: $primary;
       }
-      &.change {
+      &.release {
         color: $error;
       }
     }

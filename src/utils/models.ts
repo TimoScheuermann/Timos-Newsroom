@@ -7,10 +7,13 @@ export interface News {
   date: number;
 }
 
-export type NewsType = 'update' | 'change' | 'feature';
+export type NewsType = 'update' | 'release' | 'feature';
 export type Project =
   | 'TC Components'
   | "Timo's Icons"
   | 'Portfolio'
   | 'Investing Collectors'
-  | 'DHBW Richie';
+  | 'DHBW Richie'
+  | "Timo's Translator"
+  | 'NHL Stats'
+  | 'AMS Pro';

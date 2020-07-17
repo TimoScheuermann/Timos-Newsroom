@@ -1,6 +1,6 @@
 <template>
   <div class="timos-newsroom">
-    <tc-header title="Timo's Newsroom" />
+    <tc-header title="Timo's Newsroom" :autoBackground="true" />
     <router-view />
   </div>
 </template>

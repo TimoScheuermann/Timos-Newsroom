@@ -56,7 +56,10 @@ export default class AssetGenerator extends Vue {
     'TC Components': GeneratorTimosIcons,
     Portfolio: GeneratorTimosIcons,
     'Investing Collectors': GeneratorTimosIcons,
-    'DHBW Richie': GeneratorTimosIcons
+    'DHBW Richie': GeneratorTimosIcons,
+    "Timo's Translator": GeneratorTimosIcons,
+    'NHL Stats': GeneratorTimosIcons,
+    'AMS Pro': GeneratorTimosIcons
   };
 
   @Watch('date')
