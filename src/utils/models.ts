@@ -5,6 +5,11 @@ export interface News {
   type: NewsType;
   project: Project;
   date: number;
+  links?: NewsLink[];
+}
+export interface NewsLink {
+  href: string;
+  title: string;
 }
 
 export type NewsType = 'update' | 'release' | 'feature';

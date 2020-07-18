@@ -14,6 +14,15 @@
       <div class="title">{{ news.title }}</div>
       <div class="description">{{ news.description }}</div>
       <div class="grower"></div>
+      <div class="links" v-if="news.links && news.links.length > 0">
+        <div class="links-title">Links</div>
+        <tc-link
+          v-for="l in news.links"
+          :key="news.date + l.title"
+          :href="l.href"
+          >{{ l.title }}</tc-link
+        >
+      </div>
       <div class="footer">
         <tc-tooltip :tooltip="new Date(news.date).toLocaleString()">
           <div class="date">{{ formatDate(news.date) }}</div>
@@ -40,7 +49,7 @@ export default class TimosNewsroomNewsTile extends Vue {
 
   get hasBackground(): boolean {
     return (
-      this.news.description.startsWith('This updated brings ') ||
+      this.news.description.startsWith('This update brings ') ||
       this.news.description.endsWith('speed up your development workflow.')
     );
   }
@@ -132,6 +141,17 @@ export default class TimosNewsroomNewsTile extends Vue {
     }
     .grower {
       flex-grow: 1;
+    }
+    .links {
+      margin-left: -5px;
+      .links-title {
+        font-weight: 500;
+        margin-left: 5px;
+      }
+      .tc-link {
+        width: fit-content;
+        margin: 2px 5px;
+      }
     }
     .footer {
       display: flex;

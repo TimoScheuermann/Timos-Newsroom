@@ -14,9 +14,34 @@ export const urls: Record<Project, string> = {
 const timosIconsUpdate = 'assets/timosicons/updates/';
 const timosIconsFeature = 'assets/timosicons/features/';
 const tcComponentsFeatures = 'assets/tccomponents/features/';
+const tcComponentsUpdates = 'assets/tccomponents/updates/';
 const timosTranslatorReleases = 'assets/timostranslator/releases/';
 
 export const news: News[] = [
+  {
+    title: 'TC Components v0.4.0 is now available',
+    description:
+      'This update brings a new component, a new layout and a lot of improvements. Introducing TC-Avatar & TL-Flow. Three new TC-Spinner types have been added, you can now change the grid-gap of TL-Grid and change the color and background of TC-Scroll-Up. The API Section has been updated to the latest features.',
+    thumbnail: tcComponentsUpdates + 'v0.4.0.png',
+    type: 'update',
+    project: 'TC Components',
+    date: 1595080855000,
+    links: [
+      {
+        title: 'TC Components on NPM',
+        href: 'https://www.npmjs.com/package/tccomponents_vue'
+      },
+      {
+        title: 'TC-Avatar',
+        href: 'https://components.timos.design/component/Avatar'
+      },
+      {
+        title: 'TC-Spinner',
+        href: 'https://components.timos.design/component/Spinner'
+      },
+      { title: 'TL-Flex', href: 'https://components.timos.design/layout/Flow' }
+    ]
+  },
   {
     title: 'Icon Issue Page - Submit your own request',
     description:
@@ -47,7 +72,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.16 has been released",
     description:
-      'This updated brings 23 new icons. Featuring sort alphabetical ascending, sort alphabetical descending, sort numeric ascending, sort numeric descending, tiles minus, tiles plus, sort alphabetical, sort numeric, tiles four, tiles nine, tiles sixteen, volume 0, volume cross, volume off, eye, eye slash, volume 1, volume 2, volume 3, volume minus, volume plus, cross inverted, sidebar alt',
+      'This update brings 23 new icons. Featuring sort alphabetical ascending, sort alphabetical descending, sort numeric ascending, sort numeric descending, tiles minus, tiles plus, sort alphabetical, sort numeric, tiles four, tiles nine, tiles sixteen, volume 0, volume cross, volume off, eye, eye slash, volume 1, volume 2, volume 3, volume minus, volume plus, cross inverted, sidebar alt',
     thumbnail: timosIconsUpdate + '2.16.png',
     type: 'update',
     project: "Timo's Icons",
@@ -56,7 +81,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.15 has been released",
     description:
-      'This updated brings 14 new icons. Featuring biohazard, cloud fog, cloud moon rain, cloud snow rain, cloud sun rain, database, cloud moon, cloud rain, cloud snow, cloud sun, cloud thunder, cloud thunder rain, map marker, snowflake',
+      'This update brings 14 new icons. Featuring biohazard, cloud fog, cloud moon rain, cloud snow rain, cloud sun rain, database, cloud moon, cloud rain, cloud snow, cloud sun, cloud thunder, cloud thunder rain, map marker, snowflake',
     thumbnail: timosIconsUpdate + '2.15.png',
     type: 'update',
     project: "Timo's Icons",
@@ -65,7 +90,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.14 has been released",
     description:
-      'This updated brings 19 new icons. Featuring calendar alt, image, mail, mail unread, music, notification disabled, wrench, anchor, calendar, map, microscope, notification, phone alt, photos, present, settings, star add, ticket, umbrella',
+      'This update brings 19 new icons. Featuring calendar alt, image, mail, mail unread, music, notification disabled, wrench, anchor, calendar, map, microscope, notification, phone alt, photos, present, settings, star add, ticket, umbrella',
     thumbnail: timosIconsUpdate + '2.14.png',
     type: 'update',
     project: "Timo's Icons",
@@ -74,7 +99,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.13 has been released",
     description:
-      'This updated brings 15 new icons. Featuring attachment, chat bubble, chat bubbles, cloud upload, hard drive, microphone muted, movie, newspaper, trashcan alt, upload, cloud, cloud download, link, power, printer',
+      'This update brings 15 new icons. Featuring attachment, chat bubble, chat bubbles, cloud upload, hard drive, microphone muted, movie, newspaper, trashcan alt, upload, cloud, cloud download, link, power, printer',
     thumbnail: timosIconsUpdate + '2.13.png',
     type: 'update',
     project: "Timo's Icons",
@@ -83,7 +108,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.12 has been released",
     description:
-      'This updated brings 27 new icons. Featuring login, logout, chevron down, chevron left, chevron up, double chevron down, double chevron left, double chevron right, double chevron up, arrow return, calculator, chevron right, cocktail, color fan, fast backward, filter, flashlight, numpad, star, fast forward, list add, pause, play, step backwards, step forward, stop, wifi 0',
+      'This update brings 27 new icons. Featuring login, logout, chevron down, chevron left, chevron up, double chevron down, double chevron left, double chevron right, double chevron up, arrow return, calculator, chevron right, cocktail, color fan, fast backward, filter, flashlight, numpad, star, fast forward, list add, pause, play, step backwards, step forward, stop, wifi 0',
     thumbnail: timosIconsUpdate + '2.12.png',
     type: 'update',
     project: "Timo's Icons",
@@ -92,7 +117,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.11 has been released",
     description:
-      'This updated brings 6 new icons. Featuring chart stocks, clock simple, credit card, dollar, globe, vehicle front',
+      'This update brings 6 new icons. Featuring chart stocks, clock simple, credit card, dollar, globe, vehicle front',
     thumbnail: timosIconsUpdate + '2.11.png',
     type: 'update',
     project: "Timo's Icons",
@@ -101,7 +126,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.10 has been released",
     description:
-      'This updated brings 26 new icons. Featuring pin person, band aid, female, headphone, headset, heartbeat, heart broken, pin, apple, exchange, exclamation, exclamation circle, exclamation triangle, heart empty, male, microphone, minecraft, question circle, question triangle, tesla, thermometer three quarter, barometer, thermometer empty, thermometer full, thermometer half, thermometer quarter',
+      'This update brings 26 new icons. Featuring pin person, band aid, female, headphone, headset, heartbeat, heart broken, pin, apple, exchange, exclamation, exclamation circle, exclamation triangle, heart empty, male, microphone, minecraft, question circle, question triangle, tesla, thermometer three quarter, barometer, thermometer empty, thermometer full, thermometer half, thermometer quarter',
     thumbnail: timosIconsUpdate + '2.10.png',
     type: 'update',
     project: "Timo's Icons",
@@ -110,7 +135,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.9 has been released",
     description:
-      'This updated brings 9 new icons. Featuring key, lock closed, lock opened, alarm, minus, plus, segment, slider, tooltip',
+      'This update brings 9 new icons. Featuring key, lock closed, lock opened, alarm, minus, plus, segment, slider, tooltip',
     thumbnail: timosIconsUpdate + '2.9.png',
     type: 'update',
     project: "Timo's Icons",
@@ -119,7 +144,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.8 has been released",
     description:
-      'This updated brings 21 new icons. Featuring dice 4, dice 5, bar, bar progress, crosshair, dice 1, dice 2, dice 3, dice 6, moon, peace, quote left, repeat, sun, swap, user circle, wifi 1, wifi 2, wifi 3, percentage, quote right',
+      'This update brings 21 new icons. Featuring dice 4, dice 5, bar, bar progress, crosshair, dice 1, dice 2, dice 3, dice 6, moon, peace, quote left, repeat, sun, swap, user circle, wifi 1, wifi 2, wifi 3, percentage, quote right',
     thumbnail: timosIconsUpdate + '2.8.png',
     type: 'update',
     project: "Timo's Icons",
@@ -128,7 +153,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.7 has been released",
     description:
-      'This updated brings 10 new icons. Featuring camera, chart donut, chart pie, chart radial, computer, github, hockey sticks, modal, phone, spinner',
+      'This update brings 10 new icons. Featuring camera, chart donut, chart pie, chart radial, computer, github, hockey sticks, modal, phone, spinner',
     thumbnail: timosIconsUpdate + '2.7.png',
     type: 'update',
     project: "Timo's Icons",
@@ -137,7 +162,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.6 has been released",
     description:
-      'This updated brings 5 new icons. Featuring tabbar, toggle, windows, amspro, button',
+      'This update brings 5 new icons. Featuring tabbar, toggle, windows, amspro, button',
     thumbnail: timosIconsUpdate + '2.6.png',
     type: 'update',
     project: "Timo's Icons",
@@ -146,7 +171,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.5 has been released",
     description:
-      'This updated brings 6 new icons. Featuring card, chart bar, chart empty, chart radar, checkbox, chart line',
+      'This update brings 6 new icons. Featuring card, chart bar, chart empty, chart radar, checkbox, chart line',
     thumbnail: timosIconsUpdate + '2.5.png',
     type: 'update',
     project: "Timo's Icons",
@@ -155,7 +180,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.4 has been released",
     description:
-      'This updated brings 7 new icons. Featuring code, component, divider, download, hockey stick, input, painting',
+      'This update brings 7 new icons. Featuring code, component, divider, download, hockey stick, input, painting',
     thumbnail: timosIconsUpdate + '2.4.png',
     type: 'update',
     project: "Timo's Icons",
@@ -164,7 +189,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.3 has been released",
     description:
-      'This updated brings 8 new icons. Featuring table, book, book p, book q, checkmark, scale, sidebar, todo',
+      'This update brings 8 new icons. Featuring table, book, book p, book q, checkmark, scale, sidebar, todo',
     thumbnail: timosIconsUpdate + '2.3.png',
     type: 'update',
     project: "Timo's Icons",
@@ -173,7 +198,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.2 has been released",
     description:
-      'This updated brings 4 new icons. Featuring user, user active, user inactive, users',
+      'This update brings 4 new icons. Featuring user, user active, user inactive, users',
     thumbnail: timosIconsUpdate + '2.2.png',
     type: 'update',
     project: "Timo's Icons",
@@ -182,7 +207,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.1 has been released",
     description:
-      'This updated brings 10 new icons. Featuring bucket, dot, dots, farm, list, list check, moped license plate, offer, scale out, scale in',
+      'This update brings 10 new icons. Featuring bucket, dot, dots, farm, list, list check, moped license plate, offer, scale out, scale in',
     thumbnail: timosIconsUpdate + '2.1.png',
     type: 'update',
     project: "Timo's Icons",
@@ -191,7 +216,7 @@ export const news: News[] = [
   {
     title: "Timo's Icons v2.0 has been released",
     description:
-      'This updated brings 33 new icons. Featuring arrow right, arrow left, arrow up right, arrow down, arrow down left, arrow down right, arrow up, arrow up left, at, circle, cross, hashtag, lens, list bullet, pencil, questionmark, reply, server, share, tools, trashcan, user card, add, checkmark circle, checkmarks, cross circle, gears, heart, house, i circle, save, stars, thunder',
+      'This update brings 33 new icons. Featuring arrow right, arrow left, arrow up right, arrow down, arrow down left, arrow down right, arrow up, arrow up left, at, circle, cross, hashtag, lens, list bullet, pencil, questionmark, reply, server, share, tools, trashcan, user card, add, checkmark circle, checkmarks, cross circle, gears, heart, house, i circle, save, stars, thunder',
     thumbnail: timosIconsUpdate + '2.0.png',
     type: 'update',
     project: "Timo's Icons",
@@ -248,7 +273,7 @@ export const news: News[] = [
   {
     title: 'Introducing AMS Pro Icons',
     description:
-      'This updated brings special icons, exclusively designed for ams-pro.de. They will be feautured on their management platform for workprotection and healthprotection',
+      'This update brings special icons, exclusively designed for ams-pro.de. They will be feautured on their management platform for workprotection and healthprotection',
     thumbnail: 'assets/amspro/releases/icons.png',
     type: 'release',
     project: 'AMS Pro',
