@@ -1,22 +1,23 @@
 /* eslint-disable */
+import { News } from '@/utils/models';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
-    a: 1,
+    news: []
   },
   getters: {
-    a: (state: any): number => {
-      return state.a;
-    },
+    news: (state: any): News[] => {
+      return state.news;
+    }
   },
   mutations: {
-    updateA(state: any, a: number) {
-      state.a = a;
-    },
-  },
+    setNews(state: any, news: News[]) {
+      state.news = news;
+    }
+  }
 });
 
 export default store;

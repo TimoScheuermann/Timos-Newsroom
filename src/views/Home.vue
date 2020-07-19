@@ -9,23 +9,7 @@
     </tc-hero>
     <tc-scroll-up />
     <div content>
-      <timos-newsroom--news-tile :news="latestNews" :index="0" :latest="true" />
-      <div class="news-grid news-grid--second-row">
-        <timos-newsroom--news-tile
-          v-for="(n, i) in secondAndThirdNews"
-          :key="n.date"
-          :news="n"
-          :index="i + 1"
-        />
-      </div>
-      <div class="news-grid">
-        <timos-newsroom--news-tile
-          v-for="(n, i) in otherNews"
-          :key="n.date"
-          :news="n"
-          :index="i + 3"
-        />
-      </div>
+      <timos-newsroom--gallery v-if="news && news.length > 0" :news="news" />
     </div>
   </div>
 </template>
@@ -33,43 +17,21 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { News } from '@/utils/models';
-import TimosNewsroomNewsTile from '@/components/TimosNewsroom-NewsTile.vue';
-import { getNews } from '../utils/functions';
+import TimosNewsroomGallery from '@/components/TimosNewsroom-Gallery.vue';
 
 @Component({
   components: {
-    'timos-newsroom--news-tile': TimosNewsroomNewsTile
+    'timos-newsroom--gallery': TimosNewsroomGallery
   }
 })
 export default class Home extends Vue {
-  get latestNews(): News {
-    return getNews()[0];
-  }
-  get secondAndThirdNews(): News[] {
-    return getNews().filter((x, i: number) => i > 0 && i < 3);
-  }
-  get otherNews(): News[] {
-    return getNews().filter((x: News, i: number) => i > 2);
+  get news(): News[] {
+    return this.$store.getters.news;
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.news-grid {
-  display: grid;
-  grid-gap: 40px;
-  margin-top: 40px;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-
-  &.news-grid--second-row {
-    @media only screen and(min-width: 800px) {
-      grid-template-columns: 1fr 1fr;
-    }
-    @media only screen and(min-width: 950px) {
-      grid-template-columns: 6fr 4fr;
-    }
-  }
-}
 .hero-content {
   display: flex;
   flex-direction: column;
@@ -83,5 +45,8 @@ export default class Home extends Vue {
     margin: 0;
     color: #fff;
   }
+}
+.tc-scroll-up {
+  z-index: 200;
 }
 </style>

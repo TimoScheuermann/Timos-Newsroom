@@ -26,6 +26,14 @@ if (window.location.href.includes('localhost')) {
       title: prefix + 'Asset Generator'
     }
   });
+  routes.push({
+    path: '/post',
+    name: 'post',
+    component: () => import('@/views/Post.vue'),
+    meta: {
+      title: prefix + 'Post news'
+    }
+  });
 }
 
 const router = new VueRouter({

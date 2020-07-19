@@ -1,15 +1,35 @@
 <template>
   <div class="timos-newsroom">
-    <tc-header title="Timo's Newsroom" :autoBackground="true" />
+    <tc-header title="Timo's Newsroom" :autoBackground="true">
+      <tc-button
+        v-if="$route.name === 'post'"
+        @click="openList"
+        name="Edit post"
+        icon="newspaper"
+      />
+    </tc-header>
     <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { axios } from '@/utils/constants';
+import { EventBus } from '@/utils/eventbus';
 
 @Component
-export default class App extends Vue {}
+export default class App extends Vue {
+  async mounted() {
+    const { data } = await axios.get(
+      'https://timos-newsroom.herokuapp.com/news'
+    );
+    this.$store.commit('setNews', data);
+  }
+
+  public openList(): void {
+    EventBus.$emit('open-list-modal');
+  }
+}
 </script>
 
 <style lang="scss">

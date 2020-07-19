@@ -28,7 +28,7 @@
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import { urls } from '@/utils/constants';
 import GeneratorTimosIcons from '@/components/generators/Generator-TimosIcons.vue';
-import { Project, News } from '../utils/models';
+import { News } from '../utils/models';
 import { VueConstructor } from 'vue/types/umd';
 
 @Component({
@@ -41,17 +41,19 @@ export default class AssetGenerator extends Vue {
   public types: string[] = ['update', 'change', 'feature'];
 
   public values: string[] = [];
-  public selected: Project = "Timo's Icons";
+  public selected = "Timo's Icons";
   public news: News = {
     title: '',
     description: '',
     thumbnail: '',
     type: 'update',
     project: this.selected,
+    hasBackground: false,
+    links: [],
     date: 0
   };
   public date = '';
-  public generators: Record<Project, VueConstructor> = {
+  public generators: Record<string, VueConstructor> = {
     "Timo's Icons": GeneratorTimosIcons,
     'TC Components': GeneratorTimosIcons,
     Portfolio: GeneratorTimosIcons,

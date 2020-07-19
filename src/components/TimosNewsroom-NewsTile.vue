@@ -5,9 +5,8 @@
     :class="{ latest: latest }"
     :style="{ animationDelay: index / 500 + 's' }"
   >
-    <div class="thumbnail" :class="{ hasBackground: hasBackground }">
+    <div class="thumbnail" :class="{ hasBackground: news.hasBackground }">
       <tc-image :src="news.thumbnail" />
-      <!-- <img :src="news.thumbnail" alt="" /> -->
     </div>
     <div class="informations">
       <div class="type" :class="news.type">{{ news.type }}</div>
@@ -38,27 +37,21 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { News, Project } from '@/utils/models';
+import { News } from '@/utils/models';
 import { urls } from '@/utils/constants';
 import { formatDate } from '@/utils/functions';
+
 @Component
 export default class TimosNewsroomNewsTile extends Vue {
   @Prop() news!: News;
   @Prop({ default: false }) latest!: boolean;
   @Prop() index!: number;
 
-  get hasBackground(): boolean {
-    return (
-      this.news.description.startsWith('This update brings ') ||
-      this.news.description.endsWith('speed up your development workflow.')
-    );
-  }
-
   public formatDate(date: number): string {
     return formatDate(date);
   }
 
-  public getProjectURL(project: Project) {
+  public getProjectURL(project: string) {
     return urls[project];
   }
 }

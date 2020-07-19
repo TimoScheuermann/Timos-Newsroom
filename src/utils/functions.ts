@@ -1,6 +1,3 @@
-import { news } from './constants';
-import { News } from './models';
-
 /* eslint-disable */
 export function copyToClipboard(text: string) {
   const dummy = document.createElement('textarea');
@@ -9,10 +6,6 @@ export function copyToClipboard(text: string) {
   dummy.select();
   document.execCommand('copy');
   document.body.removeChild(dummy);
-}
-
-export function getNews(): News[] {
-  return news.sort((a, b) => b.date - a.date);
 }
 
 export function formatDate(time: any): string {
