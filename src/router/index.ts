@@ -34,6 +34,14 @@ if (window.location.href.includes('localhost')) {
       title: prefix + 'Post news'
     }
   });
+  routes.push({
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue'),
+    meta: {
+      title: prefix + 'login news'
+    }
+  });
 }
 
 const router = new VueRouter({
