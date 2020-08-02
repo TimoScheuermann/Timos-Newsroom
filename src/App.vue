@@ -7,7 +7,7 @@
         name="Edit post"
         icon="newspaper"
       />
-      <tc-button icon="login" name="Sign in" :to="{ name: 'login' }" />
+      <!-- <tc-button icon="login" name="Sign in" :to="{ name: 'login' }" /> -->
     </tc-header>
     <router-view />
   </div>
@@ -21,7 +21,7 @@ import { EventBus } from '@/utils/eventbus';
 @Component
 export default class App extends Vue {
   async mounted() {
-    const { data } = await axios.get('http://api.timos.design/newsroom');
+    const { data } = await axios.get('https://api.timos.design/newsroom');
     this.$store.commit('setNews', data);
   }
 
