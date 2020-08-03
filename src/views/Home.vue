@@ -4,7 +4,6 @@
       <img slot="background" src="assets/hero.jpg" alt="" />
       <div class="hero-content">
         <img src="pwa/maskIcon.svg" alt="" />
-        <h1>Timo's Newsroom</h1>
       </div>
     </tc-hero>
     <tc-scroll-up />
