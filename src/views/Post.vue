@@ -63,6 +63,7 @@
     <h1>Preview</h1>
     <timos-newsroom--gallery :news="[news, news, news, news, news, news]" />
 
+    <p>{{ news }}</p>
     <tc-modal v-model="modalState" title="Select post to edit">
       <tc-table>
         <tr>
@@ -174,25 +175,24 @@ export default class Post extends Vue {
     );
   }
   public async post(isDelete = false) {
-    let baseUrl = 'http://localhost:3000/';
-    if (!this.useLocalhost) baseUrl = 'https://timos-newsroom.herokuapp.com/';
+    const baseUrl = 'https://api.timos.design/newsroom/';
 
     let object = {};
     let endpoint = '';
 
     if (isDelete) {
-      endpoint = baseUrl + 'news/delete';
+      endpoint = baseUrl + 'delete';
       object = {
         _id: this.news._id || ''
       };
     } else if (this.news._id) {
-      endpoint = baseUrl + 'news/update';
+      endpoint = baseUrl + 'update';
       object = {
         id: this.news._id || '',
         update: this.news
       };
     } else {
-      endpoint = 'news/post';
+      endpoint = 'post';
       object = this.news;
     }
 
