@@ -34,25 +34,12 @@ import {
   signOutTAUser,
   verfiyTAUser,
   signInTAUser,
-  getTAUser,
-  persistLogin
+  getTAUser
 } from 'timos-accounts';
 
 @Component
 export default class App extends Vue {
   async mounted() {
-    this.$nextTick(async () => {
-      const possibleToken = this.$route.query.taToken as string;
-      if (possibleToken) {
-        persistLogin(possibleToken);
-        this.$router.push({ name: 'home' });
-      }
-
-      if (await verfiyTAUser()) {
-        this.$store.commit('validate', getTAUser());
-      }
-    });
-
     const { data } = await axios.get('https://api.timos.design/newsroom');
     this.$store.commit('setNews', data);
   }
@@ -69,6 +56,7 @@ export default class App extends Vue {
 
   public logout() {
     signOutTAUser();
+    this.$store.commit('logout');
   }
 
   public openList(): void {

@@ -33,7 +33,7 @@ const store = new Vuex.Store({
     logout(state: any) {
       state.validated = false;
       state.user = undefined;
-      router.push({ name: 'home' });
+      if (router.currentRoute.name !== 'home') router.push({ name: 'home' });
     },
     removeNews(state: any, news: News) {
       state.news = state.news.filter((n: News) => n._id !== news._id);
