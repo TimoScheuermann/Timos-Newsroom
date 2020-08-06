@@ -1,6 +1,14 @@
 import Axios from 'axios';
+import { getCookie } from './functions';
 
-export const axios = Axios.create();
+export const axios = Axios.create({
+  headers: {
+    Authorization: `Bearer ${getCookie('timos-designs-auth')}`
+  },
+  baseURL: process.env.VUE_APP_LOCAL
+    ? 'http://localhost:3000/'
+    : 'https://api.timos.design/'
+});
 
 export const urls: Record<string, string> = {
   'DHBW Richie': 'https://dhbw-richie.netlify.app',

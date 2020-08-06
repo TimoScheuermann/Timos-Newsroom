@@ -1,14 +1,25 @@
 <template>
   <div class="timos-newsroom">
-    <tc-header title="Timo's Newsroom" :autoBackground="true">
-      <tc-button
-        v-if="$route.name === 'post'"
-        @click="openList"
-        name="Edit post"
-        icon="newspaper"
-      />
-      <!-- <tc-button icon="login" name="Sign in" :to="{ name: 'login' }" /> -->
-    </tc-header>
+    <tc-navbar :autoBackground="true">
+      <tl-flow slot="logo">
+        <img logo src="pwa/maskIcon.svg" alt="" />
+        <b>Newsroom</b>
+      </tl-flow>
+      <template slot="actions">
+        <tc-button
+          v-if="!$store.getters.valid"
+          @click="login"
+          name="Login"
+          icon="login"
+        />
+        <tc-button v-else @click="logout" name="Logout" icon="logout" />
+      </template>
+      <template v-if="$store.getters.valid">
+        <tc-navbar-item icon="add" name="Post News" routeName="post" />
+        <tc-navbar-item icon="newspaper" name="Edit News" routeName="edit" />
+      </template>
+    </tc-navbar>
+
     <router-view />
   </div>
 </template>
@@ -17,12 +28,24 @@
 import { Vue, Component } from 'vue-property-decorator';
 import { axios } from '@/utils/constants';
 import { EventBus } from '@/utils/eventbus';
+import { validateAndAutoLogin, logOut, sendToLogin } from './utils/authService';
 
 @Component
 export default class App extends Vue {
   async mounted() {
     const { data } = await axios.get('https://api.timos.design/newsroom');
     this.$store.commit('setNews', data);
+
+    validateAndAutoLogin();
+  }
+
+  public async login() {
+    if (!(await validateAndAutoLogin())) {
+      sendToLogin();
+    }
+  }
+  public logout() {
+    logOut();
   }
 
   public openList(): void {
@@ -50,5 +73,9 @@ body {
 [content] {
   padding: calc(50px + env(safe-area-inset-top)) 5vw
     calc(5vw + env(safe-area-inset-bottom));
+}
+img[logo] {
+  max-height: 40px;
+  margin-right: 10px;
 }
 </style>
