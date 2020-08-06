@@ -13,13 +13,13 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/Home.vue'),
+      component: () => import('@/views/Newsroom-Home.vue'),
       meta: {
         title: prefix + 'Home'
       }
     },
     {
-      path: '/',
+      path: '/edit',
       name: 'edit',
       component: () => import('@/views/Newsroom-EditNews.vue'),
       meta: {
@@ -27,7 +27,7 @@ const router = new VueRouter({
       }
     },
     {
-      path: '/',
+      path: '/post',
       name: 'post',
       component: () => import('@/views/Newsroom-PostNews.vue'),
       meta: {

@@ -36,7 +36,7 @@ export async function validateAndAutoLogin(): Promise<boolean> {
         return true;
       })
       .catch(() => {
-        return false;
+        deleteCookie('timos-designs-auth');
       });
   }
   return false;

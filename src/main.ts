@@ -7,7 +7,6 @@ import 'tccomponents_vue/lib/tccomponents_vue.css';
 import Vue from 'vue';
 import { Route } from 'vue-router';
 import './registerServiceWorker';
-import { User } from './utils/models';
 
 Vue.config.productionTip = false;
 
@@ -16,14 +15,6 @@ for (const component in TCComponents) {
 }
 
 router.beforeEach((to: Route, from: Route, next: Function) => {
-  if (
-    (to.name === 'edit' || to.name === 'post') &&
-    !store.getters.valid &&
-    (store.getters.user as User).group !== 'Admin'
-  )
-    next(false);
-  else next();
-
   const title = getTitle();
   document.title = title;
 
@@ -35,6 +26,14 @@ router.beforeEach((to: Route, from: Route, next: Function) => {
 
   const og = document.querySelector('meta[property="og:title"]');
   if (og) og.setAttribute('content', title);
+
+  if (
+    to.name !== 'home' &&
+    !store.getters.valid &&
+    store.getters.user.group !== 'Admin'
+  ) {
+    next({ name: 'home' });
+  } else next();
 });
 
 new Vue({

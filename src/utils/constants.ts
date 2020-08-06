@@ -18,5 +18,20 @@ export const urls: Record<string, string> = {
   Portfolio: 'https://portfolio.timos.design',
   'NHL Stats': 'https://github.com/TimoScheuermann/Advanced-DB-Cassandra',
   "Timo's Translator": 'https://translator.timos.design',
-  'AMS Pro': 'https://ams-pro.de'
+  'AMS Pro': 'https://ams-pro.de',
+  "Timo's Accounts": 'https://accounts.timos.design',
+  'Gastro Assistant': 'https://gastro-assistant.com'
 };
+
+export const projects: string[] = [
+  'TC Components',
+  "Timo's Icons",
+  'Portfolio',
+  'Investing Collectors',
+  'DHBW Richie',
+  "Timo's Translator",
+  'NHL Stats',
+  'AMS Pro',
+  "Timo's Accounts",
+  'Gastro Assistant'
+];

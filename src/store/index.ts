@@ -13,7 +13,7 @@ const store = new Vuex.Store({
   },
   getters: {
     news: (state: any): News[] => {
-      return state.news;
+      return state.news.sort((a: News, b: News) => +b.date - +a.date);
     },
     valid: (state: any): boolean => {
       return state.validated;
@@ -34,6 +34,18 @@ const store = new Vuex.Store({
       state.validated = false;
       state.user = undefined;
       router.push({ name: 'home' });
+    },
+    removeNews(state: any, news: News) {
+      state.news = state.news.filter((n: News) => n._id !== news._id);
+    },
+    updateNews(state: any, news: News) {
+      state.news = state.news.map((n: News) => {
+        if (n._id !== news._id) return n;
+        else return news;
+      });
+    },
+    addNews(state: any, news: News) {
+      state.news.push(news);
     }
   }
 });

@@ -4,7 +4,7 @@
     <div class="news-grid news-grid--second-row">
       <timos-newsroom--news-tile
         v-for="(n, i) in secondAndThirdNews"
-        :key="n._id + i + 'a'"
+        :key="(n._id || '') + i + 'a'"
         :news="n"
         :index="i + 1"
       />
@@ -12,7 +12,7 @@
     <div class="news-grid">
       <timos-newsroom--news-tile
         v-for="(n, i) in otherNews"
-        :key="n._id + i + 'b'"
+        :key="(n._id || '') + i + 'b'"
         :news="n"
         :index="i + 3"
       />

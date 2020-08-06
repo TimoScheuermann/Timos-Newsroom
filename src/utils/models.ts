@@ -6,7 +6,7 @@ export interface News {
   type: string;
   project: string;
   hasBackground: boolean;
-  date: number;
+  date: number | string;
   links: NewsLink[];
 }
 
