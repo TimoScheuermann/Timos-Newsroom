@@ -30,23 +30,40 @@
 import { Vue, Component } from 'vue-property-decorator';
 import { axios } from '@/utils/constants';
 import { EventBus } from '@/utils/eventbus';
-import { validateAndAutoLogin, logOut, sendToLogin } from './utils/authService';
+import {
+  signOutTAUser,
+  verfiyTAUser,
+  signInTAUser,
+  getTAUser,
+  persistLogin
+} from 'timos-accounts';
 
 @Component
 export default class App extends Vue {
   async mounted() {
     const { data } = await axios.get('https://api.timos.design/newsroom');
     this.$store.commit('setNews', data);
-    validateAndAutoLogin();
+
+    const possibleToken = this.$route.query.taToken as string;
+    if (possibleToken) persistLogin(possibleToken);
+
+    if (await verfiyTAUser()) {
+      this.$store.commit('validate', getTAUser());
+    }
   }
 
   public async login() {
-    if (!(await validateAndAutoLogin())) {
-      sendToLogin();
+    if (!(await verfiyTAUser())) {
+      signInTAUser(
+        process.env.VUE_APP_REDIRECT || 'https://newsroom.timos.design'
+      );
+    } else {
+      this.$store.commit('validate', getTAUser());
     }
   }
+
   public logout() {
-    logOut();
+    signOutTAUser();
   }
 
   public openList(): void {
