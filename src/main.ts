@@ -35,7 +35,7 @@ router.beforeEach(async (to: Route, from: Route, next: Function) => {
     return;
   }
 
-  if (await verfiyTAUser()) {
+  if (!store.getters.valid && (await verfiyTAUser())) {
     store.commit('validate', getTAUser());
   }
 
