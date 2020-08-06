@@ -41,15 +41,20 @@ import {
 @Component
 export default class App extends Vue {
   async mounted() {
+    this.$nextTick(async () => {
+      const possibleToken = this.$route.query.taToken as string;
+      if (possibleToken) {
+        persistLogin(possibleToken);
+        this.$router.push({ name: 'home' });
+      }
+
+      if (await verfiyTAUser()) {
+        this.$store.commit('validate', getTAUser());
+      }
+    });
+
     const { data } = await axios.get('https://api.timos.design/newsroom');
     this.$store.commit('setNews', data);
-
-    const possibleToken = this.$route.query.taToken as string;
-    if (possibleToken) persistLogin(possibleToken);
-
-    if (await verfiyTAUser()) {
-      this.$store.commit('validate', getTAUser());
-    }
   }
 
   public async login() {
