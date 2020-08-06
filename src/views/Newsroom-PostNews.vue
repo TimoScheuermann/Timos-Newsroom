@@ -84,6 +84,7 @@
           <p>{{ message }}</p>
         </div>
       </tl-grid>
+      <p>{{ news }}</p>
       <tc-headline title="Preview" />
 
       <timos-newsroom-gallery :news="[news, news, news, news, news, news]" />
