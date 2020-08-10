@@ -113,16 +113,16 @@
     </div>
     <tc-modal title="Select news" v-model="modalOpened">
       <tc-table>
-        <tr>
+        <template slot="head">
           <th>Date</th>
           <th>Title</th>
           <th>Description</th>
-        </tr>
-        <tr v-for="n in $store.getters.news" :key="n._id" @click="select(n)">
-          <td>{{ new Date(n.date).toDateString() }}</td>
-          <td>{{ n.title }}</td>
-          <td>{{ n.description }}</td>
-        </tr>
+        </template>
+        <tc-tr v-for="n in $store.getters.news" :key="n._id" @click="select(n)">
+          <tc-td>{{ new Date(n.date).toDateString() }}</tc-td>
+          <tc-td>{{ n.title }}</tc-td>
+          <tc-td>{{ n.description }}</tc-td>
+        </tc-tr>
       </tc-table>
     </tc-modal>
   </div>
@@ -141,7 +141,7 @@ import TimosNewsroomGallery from '@/components/TimosNewsroom-Gallery.vue';
 })
 export default class NewsroomEditNews extends Vue {
   public message = '';
-  public modalOpened = false;
+  public modalOpened = !false;
   public projects: string[] = projects;
   public newLink: NewsLink = { href: '', title: '' };
   public news: News | null = null;

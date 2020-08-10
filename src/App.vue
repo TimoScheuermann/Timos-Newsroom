@@ -17,8 +17,18 @@
       <template
         v-if="$store.getters.valid && $store.getters.user.group === 'Admin'"
       >
-        <tc-navbar-item icon="add" name="Post News" routeName="post" />
-        <tc-navbar-item icon="newspaper" name="Edit News" routeName="edit" />
+        <tc-navbar-item
+          tfcolor="alarm"
+          icon="add"
+          name="Post News"
+          routeName="post"
+        />
+        <tc-navbar-item
+          tfcolor="alarm"
+          icon="newspaper"
+          name="Edit News"
+          routeName="edit"
+        />
       </template>
     </tc-navbar>
 
@@ -29,7 +39,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { axios } from '@/utils/constants';
-import { EventBus } from '@/utils/eventbus';
 import {
   signOutTAUser,
   verfiyTAUser,
@@ -57,10 +66,6 @@ export default class App extends Vue {
   public logout() {
     signOutTAUser();
     this.$store.commit('logout');
-  }
-
-  public openList(): void {
-    EventBus.$emit('open-list-modal');
   }
 
   public goHome(): void {
