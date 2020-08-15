@@ -19,6 +19,14 @@ const router = new VueRouter({
       }
     },
     {
+      path: '/generate',
+      name: 'generate',
+      component: () => import('@/views/AssetGenerator.vue'),
+      meta: {
+        title: prefix + 'Generator'
+      }
+    },
+    {
       path: '/edit',
       name: 'edit',
       component: () => import('@/views/Newsroom-EditNews.vue'),
