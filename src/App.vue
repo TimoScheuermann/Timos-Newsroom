@@ -100,7 +100,7 @@ body {
   cursor: pointer;
 }
 img[logo] {
-  max-height: 40px;
+  max-height: 30px;
   margin-right: 10px;
 }
 </style>
