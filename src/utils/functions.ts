@@ -1,3 +1,6 @@
+import { backendURL } from './constants';
+import { INewsExtended } from './interfaces';
+
 /* eslint-disable */
 export function copyToClipboard(text: string) {
   const dummy = document.createElement('textarea');
@@ -70,4 +73,31 @@ export function collide(el1: HTMLElement, el2: HTMLElement): boolean {
     rect1.bottom < rect2.top ||
     rect1.left > rect2.right
   );
+}
+
+export function handleNewsPreload(id: string): void {
+  fetch(`${backendURL}/newsroom/news/${id}`)
+    .then(res => res.json())
+    .then((news: INewsExtended) => {
+      if (news) {
+        const options = {
+          title: news.title,
+          description: news.content,
+          image: news.thumbnail,
+          url: 'https://newsroom.timos.design/news/' + id
+        };
+        [
+          'meta[name="%"]',
+          'meta[property="og:%"]',
+          'meta[property="twitter:%"]'
+        ].forEach(type => {
+          for (const [key, value] of Object.entries(options)) {
+            const element = document.querySelector(type.replace('%', key));
+            if (element) {
+              element.setAttribute('content', value);
+            }
+          }
+        });
+      }
+    });
 }

@@ -8,6 +8,7 @@ import 'tccomponents_vue/lib/tccomponents_vue.css';
 import Vue from 'vue';
 import { Route } from 'vue-router';
 import './registerServiceWorker';
+import { handleNewsPreload } from './utils/functions';
 
 smoothscroll.polyfill();
 
@@ -29,6 +30,10 @@ router.beforeEach((to: Route, from: Route, next: Function) => {
 
   const og = document.querySelector('meta[property="og:title"]');
   if (og) og.setAttribute('content', title);
+
+  if (to.name === 'news') {
+    handleNewsPreload(to.params.news);
+  }
 
   next();
 });
