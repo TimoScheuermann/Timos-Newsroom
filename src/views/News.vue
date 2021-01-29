@@ -30,7 +30,7 @@
           <tc-divider></tc-divider>
         </div>
 
-        <div class="media" :style="mediaStyle" />
+        <tc-image :src="news.thumbnail" />
 
         <p line-break>{{ news.content }}</p>
       </template>
@@ -111,17 +111,11 @@ export default class News extends Vue {
     margin: 20px auto;
   }
 
-  .media {
+  img {
     border-radius: $border-radius;
     overflow: hidden;
-    min-height: 300px;
+    max-width: 100%;
     background: #eaeaec;
-    background: {
-      repeat: no-repeat;
-      size: cover;
-      position: center;
-    }
-    margin-bottom: 20px;
   }
 
   .title {

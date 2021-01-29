@@ -1,7 +1,7 @@
-declare module "*.vue" {
-  import Vue from "vue";
+declare module '*.vue' {
+  import Vue from 'vue';
   export default Vue;
 }
 
-declare module "tccomponents_vue";
-// declare module 'timos-accounts';
+declare module 'tccomponents_vue';
+declare module 'smoothscroll-polyfill';

@@ -2,11 +2,14 @@
 import App from '@/App.vue';
 import router, { getTitle } from '@/router';
 import store from '@/store';
+import smoothscroll from 'smoothscroll-polyfill';
 import * as TCComponents from 'tccomponents_vue';
 import 'tccomponents_vue/lib/tccomponents_vue.css';
 import Vue from 'vue';
 import { Route } from 'vue-router';
 import './registerServiceWorker';
+
+smoothscroll.polyfill();
 
 Vue.config.productionTip = false;
 

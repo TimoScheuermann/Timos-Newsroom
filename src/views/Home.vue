@@ -16,14 +16,14 @@
 
     <section content dark v-if="featured && featured.length > 0">
       <h1 section-wrapper>Featured News</h1>
-      <NewsSlider @next="nextSlide()" @prev="prevSlide()">
+      <NewsSlider v-model="currentSlide">
         <NewsTileFeatured
           v-for="(f, i) in featured"
           :key="f._id + i"
           :news="f"
           :id="'featured-' + i"
           :focused="i === currentSlide"
-          @focus="changeSlide(i)"
+          @focus="currentSlide = i"
         />
       </NewsSlider>
 
@@ -33,7 +33,7 @@
             v-for="(a, i) in Array(slideAmount)"
             :key="i"
             :active="i === currentSlide"
-            @click="changeSlide(i)"
+            @click="currentSlide = i"
           />
         </div>
         <div class="buttons">
@@ -98,20 +98,11 @@ export default class Home extends Vue {
   }
 
   public nextSlide(): void {
-    this.changeSlide(Math.min(this.slideAmount - 1, ++this.currentSlide));
+    this.currentSlide = Math.min(this.slideAmount - 1, ++this.currentSlide);
   }
 
   public prevSlide(): void {
-    this.changeSlide(Math.max(0, --this.currentSlide));
-  }
-
-  public changeSlide(to: number): void {
-    this.currentSlide = to;
-    const slide = document.getElementById('featured-' + to);
-
-    if (slide) {
-      slide.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-    }
+    this.currentSlide = Math.max(0, --this.currentSlide);
   }
 }
 </script>

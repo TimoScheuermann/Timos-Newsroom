@@ -11,10 +11,21 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 
 @Component
 export default class NewsSlider extends Vue {
+  @Prop() value!: number;
+
+  @Watch('value')
+  valueChanged(to: number, from: number): void {
+    if (this.element) {
+      let amount = window.innerWidth * 0.8;
+      if (from > to) amount *= -1;
+      this.element.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+  }
+
   get element(): HTMLElement {
     return this.$refs.slider as HTMLElement;
   }

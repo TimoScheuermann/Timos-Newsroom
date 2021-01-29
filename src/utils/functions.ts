@@ -36,7 +36,7 @@ export function formatDate(time: any): string {
     [58060800, 'Last year', 'Next year'], // 60*60*24*7*4*12*2
     [2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
     [5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
-    [58060800000, 'centuries', 2903040000], // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
+    [58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
   ];
   let seconds = (+new Date() - time) / 1000,
     token = 'ago',
@@ -59,4 +59,15 @@ export function formatDate(time: any): string {
         return Math.floor(seconds / +format[2]) + ' ' + format[1] + ' ' + token;
     }
   return time;
+}
+
+export function collide(el1: HTMLElement, el2: HTMLElement): boolean {
+  const rect1 = el1.getBoundingClientRect();
+  const rect2 = el2.getBoundingClientRect();
+  return !(
+    rect1.top > rect2.bottom ||
+    rect1.right < rect2.left ||
+    rect1.bottom < rect2.top ||
+    rect1.left > rect2.right
+  );
 }

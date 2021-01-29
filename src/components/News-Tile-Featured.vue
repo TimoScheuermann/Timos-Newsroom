@@ -85,6 +85,7 @@ export default class NewsTileFeatured extends Vue {
   scroll-snap-align: center;
 
   height: 400px;
+  max-height: 100vw;
 
   .media {
     min-width: 120px;

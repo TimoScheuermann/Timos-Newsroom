@@ -1,5 +1,10 @@
 <template>
-  <div class="news-header" :enabled="darken">
+  <div
+    class="news-header"
+    :enabled="darken"
+    :dark="darkBackground"
+    ref="header"
+  >
     <tl-flow class="header-wrapper" horizontal="space-between">
       <div @click="goHome()">
         <tl-flow class="logo">
@@ -52,6 +57,7 @@
 </template>
 
 <script lang="ts">
+import { collide } from '@/utils/functions';
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 import TransitionExpand from './TransitionExpand.vue';
 
@@ -66,9 +72,28 @@ export default class NewsHeader extends Vue {
   public darken = this.value;
   public query = '';
   public expanded = false;
+  public darkBackground = false;
+  public timer = 0;
+
+  mounted() {
+    // window.addEventListener('scroll', this.scrollListener);
+  }
+  beforeDestroy() {
+    // window.removeEventListener('scroll', this.scrollListener);
+  }
 
   get projects(): string[] | null {
     return this.$store.getters.projects;
+  }
+
+  public scrollListener(e: Event) {
+    const header = this.$refs.header as HTMLElement;
+    const dark = document.querySelectorAll('[dark]') as NodeListOf<HTMLElement>;
+    if (header) {
+      this.darkBackground = Array.from(dark).some(x => {
+        return collide(x, header);
+      });
+    }
   }
 
   @Watch('darken')
@@ -120,10 +145,25 @@ export default class NewsHeader extends Vue {
 
   top: 0;
   z-index: 100;
+
   @include backdrop-blur($paragraph);
+  &[dark] {
+    @include backdrop-blur($paragraph_dark);
+    color: $color_dark;
+    .expand-wrapper {
+      background: $paragraph_dark;
+    }
+    form {
+      border-color: rgba($color_dark, 0.25);
+    }
+  }
+
   transition: 0.2s ease-in-out;
   &[enabled] {
     background: $paragraph;
+    &[dark] {
+      background: $paragraph_dark;
+    }
     .search-wrapper i {
       transform: rotate(180deg);
     }
@@ -178,7 +218,7 @@ export default class NewsHeader extends Vue {
   }
 
   form {
-    border-bottom: 1px solid rgba(#111, 0.25);
+    border-bottom: 1px solid rgba($color, 0.25);
     display: grid;
     grid-template-columns: auto 1fr;
     place-content: center;
@@ -194,6 +234,7 @@ export default class NewsHeader extends Vue {
     input {
       background: none;
       border: none;
+      color: inherit;
       outline: none;
       font: inherit;
       padding: 5px 0;
