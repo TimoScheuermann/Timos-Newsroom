@@ -13,33 +13,49 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/Newsroom-Home.vue'),
+      component: () => import('@/views/Home.vue'),
       meta: {
         title: prefix + 'Home'
       }
     },
     {
-      path: '/generate',
-      name: 'generate',
-      component: () => import('@/views/AssetGenerator.vue'),
+      path: '/project/:project',
+      name: 'project',
+      component: () => import('@/views/Project.vue'),
       meta: {
-        title: prefix + 'Generator'
+        title: prefix + 'Project'
       }
     },
     {
-      path: '/edit',
-      name: 'edit',
-      component: () => import('@/views/Newsroom-EditNews.vue'),
+      path: '/news/:news',
+      name: 'news',
+      component: () => import('@/views/News.vue'),
       meta: {
-        title: prefix + 'Edit'
+        title: prefix + 'News'
       }
     },
     {
-      path: '/post',
-      name: 'post',
-      component: () => import('@/views/Newsroom-PostNews.vue'),
+      path: '/search',
+      name: 'search',
+      component: () => import('@/views/Search.vue'),
       meta: {
-        title: prefix + 'Post'
+        title: prefix + 'Search'
+      }
+    },
+    {
+      path: '/archive',
+      name: 'archive',
+      component: () => import('@/views/Archive.vue'),
+      meta: {
+        title: prefix + 'Archive'
+      }
+    },
+    {
+      path: '/archive/:project',
+      name: 'archive-project',
+      component: () => import('@/views/Archive.vue'),
+      meta: {
+        title: prefix + 'Archive'
       }
     },
     {

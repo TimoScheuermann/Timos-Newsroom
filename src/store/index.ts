@@ -1,51 +1,44 @@
-/* eslint-disable */
-import router from '@/router';
-import { News, User } from '@/utils/models';
+import { INewsExtended } from '@/utils/interfaces';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
+
 const store = new Vuex.Store({
   state: {
-    news: [],
-    user: {} as User,
-    validated: false
+    news: null,
+    projects: null,
+    olderNews: null,
+    featured: null
   },
   getters: {
-    news: (state: any): News[] => {
-      return state.news.sort((a: News, b: News) => +b.date - +a.date);
+    news: (state: any): INewsExtended[] | null => {
+      return state.news;
     },
-    valid: (state: any): boolean => {
-      return state.validated;
+    projects: (state: any): string[] | null => {
+      return state.projects;
     },
-    user: (state: any): User => {
-      return state.user;
+    olderNews: (state: any): INewsExtended[] | null => {
+      return state.olderNews;
+    },
+    featured: (state: any): INewsExtended[] | null => {
+      const featured: INewsExtended[] | null = state.featured;
+      if (!featured) return null;
+      return featured.sort((a, b) => b.timestamp - a.timestamp);
     }
   },
   mutations: {
-    setNews(state: any, news: News[]) {
+    setNews(state: any, news: INewsExtended[]): void {
       state.news = news;
     },
-    validate(state: any, user: User) {
-      state.validated = true;
-      state.user = user;
+    setProjects(state: any, projects: string[]): void {
+      state.projects = projects;
     },
-    logout(state: any) {
-      state.validated = false;
-      state.user = undefined;
-      if (router.currentRoute.name !== 'home') router.push({ name: 'home' });
+    setOlderNews(state: any, news: INewsExtended[]): void {
+      state.olderNews = news;
     },
-    removeNews(state: any, news: News) {
-      state.news = state.news.filter((n: News) => n._id !== news._id);
-    },
-    updateNews(state: any, news: News) {
-      state.news = state.news.map((n: News) => {
-        if (n._id !== news._id) return n;
-        else return news;
-      });
-    },
-    addNews(state: any, news: News) {
-      state.news.push(news);
+    setFeatured(state: any, news: INewsExtended[]): void {
+      state.featured = news;
     }
   }
 });

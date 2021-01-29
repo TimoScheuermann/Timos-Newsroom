@@ -8,17 +8,6 @@ export function copyToClipboard(text: string) {
   document.body.removeChild(dummy);
 }
 
-export function getCookie(name: string): string | undefined {
-  const nameEQ = name + '=';
-  const ca = document.cookie.split(';');
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-  }
-  return undefined;
-}
-
 export function formatDate(time: any): string {
   switch (typeof time) {
     case 'number':
@@ -47,7 +36,7 @@ export function formatDate(time: any): string {
     [58060800, 'Last year', 'Next year'], // 60*60*24*7*4*12*2
     [2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
     [5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
-    [58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
+    [58060800000, 'centuries', 2903040000], // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
   ];
   let seconds = (+new Date() - time) / 1000,
     token = 'ago',

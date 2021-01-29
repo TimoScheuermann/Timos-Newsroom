@@ -1,82 +1,59 @@
 <template>
   <div class="timos-newsroom">
-    <tc-navbar :autoBackground="true">
-      <tl-flow pointer slot="logo">
-        <img logo src="pwa/maskIcon.svg" alt="" @click="goHome()" />
-        <b @click="goHome()">Newsroom</b>
-      </tl-flow>
-      <template slot="actions">
-        <tc-button
-          v-if="!$store.getters.valid"
-          @click="login"
-          name="Login"
-          icon="login"
-        />
-        <tc-button v-else @click="logout" name="Logout" icon="logout" />
-      </template>
-      <template
-        v-if="$store.getters.valid && $store.getters.user.group === 'Admin'"
-      >
-        <tc-navbar-item
-          tfcolor="alarm"
-          icon="add"
-          name="Post News"
-          routeName="post"
-        />
-        <tc-navbar-item
-          tfcolor="alarm"
-          icon="newspaper"
-          name="Edit News"
-          routeName="edit"
-        />
-      </template>
-    </tc-navbar>
-
-    <router-view />
+    <NewsHeader v-model="darken" />
+    <div class="router-view" :darken="darken" @click="darken = false">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { axios } from '@/utils/constants';
-import {
-  signOutTAUser,
-  verfiyTAUser,
-  signInTAUser,
-  getTAUser
-} from 'timos-accounts';
+import NewsHeader from './components/News-Header.vue';
+import { backendURL } from './utils/constants';
 
-@Component
+@Component({
+  components: {
+    NewsHeader
+  }
+})
 export default class App extends Vue {
-  async mounted() {
-    const { data } = await axios.get('https://api.timos.design/newsroom');
-    this.$store.commit('setNews', data);
-  }
+  public darken = false;
 
-  public async login() {
-    if (!(await verfiyTAUser())) {
-      signInTAUser(
-        process.env.VUE_APP_REDIRECT || 'https://newsroom.timos.design'
-      );
-    } else {
-      this.$store.commit('validate', getTAUser());
+  mounted() {
+    if (!this.$store.getters.news) {
+      fetch(`${backendURL}/newsroom?limit=9`)
+        .then(res => res.json())
+        .then(res => this.$store.commit('setNews', res));
     }
-  }
-
-  public logout() {
-    signOutTAUser();
-    this.$store.commit('logout');
-  }
-
-  public goHome(): void {
-    if (this.$route.name !== 'home') {
-      this.$router.push({ name: 'home' });
+    if (!this.$store.getters.projects) {
+      fetch(`${backendURL}/newsroom/projects/relevant`)
+        .then(res => res.json())
+        .then(res => this.$store.commit('setProjects', res));
+    }
+    if (!this.$store.getters.olderNews) {
+      fetch(`${backendURL}/newsroom?limit=8&skip=9`)
+        .then(res => res.json())
+        .then(res => this.$store.commit('setOlderNews', res));
+    }
+    if (!this.$store.getters.featured) {
+      fetch(`${backendURL}/newsroom/featured`)
+        .then(res => res.json())
+        .then(res => this.$store.commit('setFeatured', res));
     }
   }
 }
 </script>
 
 <style lang="scss">
+.router-view {
+  transition: 0.2s ease-in-out;
+  background: $background;
+  &[darken] {
+    filter: brightness(80%);
+  }
+}
+
 html {
   font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
     Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
@@ -84,21 +61,49 @@ html {
   scroll-behavior: smooth;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+html {
+  background: $background;
+  color: $color;
 }
 
 body {
-  background: $background;
-  color: $color;
+  min-height: 100vh;
   margin: 0;
 }
 
+h1,
+h2 {
+  margin-top: 0;
+}
+
+[center] {
+  text-align: center;
+}
+
+[error] {
+  color: $error;
+}
+
+[huge] {
+  font-size: 40px;
+}
+
 [content] {
-  padding: calc(50px + env(safe-area-inset-top)) 5vw
-    calc(5vw + env(safe-area-inset-bottom));
+  padding: 20px 5vw calc(20px + env(safe-area-inset-bottom));
 }
-[pointer] {
-  cursor: pointer;
+
+[line-break] {
+  white-space: pre-line;
 }
+
+[section-wrapper] {
+  max-width: $content-max-width;
+  margin: 0 auto;
+}
+
 img[logo] {
   max-height: 30px;
   margin-right: 10px;
