@@ -13,7 +13,7 @@
       </tl-flow>
 
       <template v-else>
-        <NewsTileSmall v-for="r in results" :key="r._id" :news="r" />
+        <NewsTileSmall v-for="r in results" :key="r.id" :news="r" />
       </template>
     </div>
   </div>
@@ -48,7 +48,7 @@ export default class Search extends Vue {
 
     this.results = null;
 
-    fetch(`${backendURL}/newsroom/search?query=${encodeURI(this.query)}`)
+    fetch(`${backendURL}/newsroom/?query=${encodeURI(this.query)}`)
       .then(res => res.json())
       .then(res => (this.results = res));
   }

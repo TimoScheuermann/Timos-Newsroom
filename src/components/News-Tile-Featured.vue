@@ -46,7 +46,7 @@ export default class NewsTileFeatured extends Vue {
         e.stopPropagation();
         this.$emit('focus');
       } else {
-        this.$router.push({ name: 'news', params: { news: this.news._id } });
+        this.$router.push({ name: 'news', params: { news: this.news.id } });
       }
     }
   }

@@ -27,7 +27,7 @@ export default class App extends Vue {
         .then(res => this.$store.commit('setNews', res));
     }
     if (!this.$store.getters.projects) {
-      fetch(`${backendURL}/newsroom/projects/relevant`)
+      fetch(`${backendURL}/projects`)
         .then(res => res.json())
         .then(res => this.$store.commit('setProjects', res));
     }

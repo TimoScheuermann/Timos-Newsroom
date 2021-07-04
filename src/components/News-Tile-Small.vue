@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'news', params: { news: news._id } }"
+    :to="{ name: 'news', params: { news: news.id } }"
     class="news-tile-small"
     v-if="news"
   >

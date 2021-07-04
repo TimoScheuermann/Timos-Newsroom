@@ -76,7 +76,7 @@ export function collide(el1: HTMLElement, el2: HTMLElement): boolean {
 }
 
 export function handleNewsPreload(id: string): void {
-  fetch(`${backendURL}/newsroom/news/${id}`)
+  fetch(`${backendURL}/newsroom/${id}`)
     .then(res => res.json())
     .then((news: INewsExtended) => {
       if (news) {

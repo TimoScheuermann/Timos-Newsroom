@@ -9,7 +9,7 @@
       <div section-wrapper>
         <h1>Latest News</h1>
         <div class="news-tiles">
-          <NewsTile v-for="n in news" :key="n._id" :news="n" />
+          <NewsTile v-for="n in news" :key="n.id" :news="n" />
         </div>
       </div>
     </section>
@@ -19,7 +19,7 @@
       <NewsSlider v-model="currentSlide">
         <NewsTileFeatured
           v-for="(f, i) in featured"
-          :key="f._id + i"
+          :key="f.id + i"
           :news="f"
           :id="'featured-' + i"
           :focused="i === currentSlide"
@@ -51,7 +51,7 @@
       <div section-wrapper>
         <h1>Older News</h1>
         <div class="news-tiles-small">
-          <NewsTileSmall v-for="n in olderNews" :key="n._id" :news="n" />
+          <NewsTileSmall v-for="n in olderNews" :key="n.id" :news="n" />
         </div>
         <tc-link routeName="archive">
           View more <i class="ti-chevron-right" />

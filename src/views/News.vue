@@ -57,7 +57,7 @@ export default class News extends Vue {
   public loadNews() {
     this.notFound = false;
     this.news = null;
-    fetch(`${backendURL}/newsroom/news/${this.$route.params.news}`)
+    fetch(`${backendURL}/newsroom/${this.$route.params.news}`)
       .then(res => res.json())
       .then(res => (this.news = res));
   }

@@ -1,8 +1,8 @@
 export interface INewsExtended {
-  _id: string;
+  id: string;
   title: string;
   project: IProjectNewsroom;
-  type: "update" | "release" | "feature";
+  type: 'update' | 'release' | 'feature';
   timestamp: number;
   content: string;
   thumbnail: string;
@@ -10,7 +10,7 @@ export interface INewsExtended {
 }
 
 export interface IProjectNewsroom {
-  _id: string;
+  id: string;
   title: string;
   icon: string;
   website: string;

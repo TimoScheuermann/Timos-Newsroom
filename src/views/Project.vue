@@ -12,7 +12,7 @@
         <span>Nothing found</span>
       </tl-flow>
       <tl-grid v-else minWidth="250">
-        <NewsTile v-for="n in news" :key="n._id" :news="n" />
+        <NewsTile v-for="n in news" :key="n.id" :news="n" />
       </tl-grid>
 
       <tc-link
@@ -29,7 +29,7 @@
 import NewsSubview from '@/components/News-Subview.vue';
 import NewsTile from '@/components/News-Tile.vue';
 import { backendURL } from '@/utils/constants';
-import { INewsExtended } from '@/utils/interfaces';
+import { INewsExtended, IProjectNewsroom } from '@/utils/interfaces';
 import { Vue, Component, Watch } from 'vue-property-decorator';
 
 @Component({
@@ -46,15 +46,17 @@ export default class Project extends Vue {
   }
 
   get project(): string {
-    return this.$route.params.project;
+    const p = this.$route.params.project;
+    const projects: IProjectNewsroom[] = this.$store.getters.projects;
+    return projects.filter(x =>
+      x.title.toLowerCase().includes(p.toLowerCase())
+    )[0].id;
   }
 
   @Watch('$route')
   public loadNews(): void {
     this.news = null;
-    fetch(
-      `${backendURL}/newsroom?limit=10&project=${this.project.slice(0, -1)}`
-    )
+    fetch(`${backendURL}/newsroom/project/${this.project}?limit=10`)
       .then(res => res.json())
       .then(res => (this.news = res));
   }

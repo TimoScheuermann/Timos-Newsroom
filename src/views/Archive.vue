@@ -11,9 +11,9 @@
           >
             <tc-select-item
               v-for="p in $store.getters.projects"
-              :key="p"
-              :title="p"
-              :defaultSelected="p === project"
+              :key="p.id"
+              :title="p.title"
+              :defaultSelected="p.title === project"
             />
           </tc-select>
         </tl-flow>
@@ -30,7 +30,7 @@
       </tl-flow>
 
       <template v-else>
-        <NewsTileSmall v-for="r in news" :key="r._id" :news="r" />
+        <NewsTileSmall v-for="r in news" :key="r.id" :news="r" />
       </template>
     </section>
   </div>
@@ -65,7 +65,7 @@ export default class Archive extends Vue {
     this.news = null;
     let project = '';
     if (this.project) {
-      project = '?project=' + this.project;
+      project = '/project/' + this.project;
     }
 
     fetch(`${backendURL}/newsroom${project}`)

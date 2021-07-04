@@ -41,11 +41,11 @@
             <transition appear name="projects">
               <div class="projects">
                 <router-link
-                  :to="{ name: 'project', params: { project: p } }"
+                  :to="{ name: 'project', params: { project: p.title } }"
                   v-for="p in projects"
-                  :key="p"
+                  :key="p.id"
                 >
-                  {{ p }}
+                  {{ p.title }}
                 </router-link>
               </div>
             </transition>
